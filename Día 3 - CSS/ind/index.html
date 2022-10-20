@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conpre su remera</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+
+<body>
+    <header>
+        <nav id="navegador">
+            <ul>
+                <li><a href="#">Nosotros</a></li>
+                <li><a href="#Productos">Productos</a></li>
+                <li><a href="#formulario">Pedido</a></li>
+                <li><a href="#">Referencias</a></li>
+                <li><a href="#Partners">Nuestros Partners</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="Productos">
+        <div class="tarjeta">
+            <div class="cuerpo">
+                <img src="Img/descarga.jpg" alt="muestra">
+
+            </div>
+            <div class="pie">
+                <a href="#">Titular</a>
+            </div>
+        </div>
+
+        <div class="tarjeta">
+            <div class="cuerpo">
+                <img src="Img/images.jpg" alt="muestra">
+
+            </div>
+            <div class="pie2">
+                <a href="#">Suplente</a>
+            </div>
+        </div>
+        <div class="tarjeta">
+            <div class="cuerpo">
+                <img src="Img/descarga (1).jpg" alt="muestra">
+
+            </div>
+            <div class="pie3">
+                <a href="#">Arquero</a>
+            </div>
+        </div>
+    </article>
+    
+    <div id="formulario">
+        <h3>Haga Su Pedido</h3>
+        <form>
+            <fieldset>
+                <label for="">Correo electronico: </label>
+                <input type="text" placeholder="ingrese su correo">
+                <br>
+                <label for="">Numero de contacto: </label>
+                <input type="text" placeholder="ingrese su numero de celular">
+                <br>
+                <label for="remera">Camiseta: </label>
+                <select name="" id="">
+                    <option value="Arquero">Arquero</option>
+                    <option value="Titular">Titular</option>
+                    <option value="Suplente">Suplente</option>
+                </select>
+                <br>
+                <label for="tamaño">Tamaño: </label>
+                <select name="tamaño" id="tamaño">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XLL</option>
+                </select>
+                <br>
+                <label for="met.pago">Metodo de pago: </label>
+                <select name="met.pago" id="met.pago">
+                    <option value="credit">Tarjeta de credito</option>
+                    <option value="debit">Tarjeta de debito</option>
+                    <option value="Efectivo">Efectivo</option>
+                </select>
+                <br>
+                <label for="">INGRESE SU COMENTARIO</label>
+                <textarea name="" id="" cols="50" rows="1"></textarea>
+                <span>Los registros seran enviados a nuestros servidores</span>
+                <br>
+                <input type="submit" id="submit" name="Enviar">
+                <input type="reset" id="reset" name="Borrar">
+
+            </fieldset>
+        </form>
+    </div>
+    <div id="Partners">
+        <h3>Nuestros Partners</h3>
+        <img src="Img/q.png" alt="Quilmes" id="Quilmes"> <img src="Img/l.jpg" alt="Leys"id="Leys">
+        <img src="Img/N.png" alt="Naldo" id="Naldo"><img src="Img/TNT(2).jpg" alt="TNT Sport" id="TNT">
+    </div>
+
+    <footer>
+        <p>Derechos reservados Alumnos Leonardo Gauto, Gonzalo Ordonez, Adrian Manzano</p>
+    </footer>
+</body>
+
+</html>

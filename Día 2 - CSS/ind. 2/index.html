@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Challenge</title>
+</head>
+
+<body>
+    <header id="Start">
+        <nav>
+            <a href="#Home">Home</a>
+            <a href="#Sobre Nosotros">Sobre Nosotros</a>
+            <a href="#Productos">Productos</a>
+            <a href="#Para Empresas">Para Empresas</a>
+        </nav>
+    </header>
+    <aside id="Sobre Nosotros">
+        <img src="Img/descarga.jpg" alt="Alan Turing">
+        <h3>Alan Turing </h3>
+        <p>Alan Mathison Turing fue un matemático, lógico, informático teórico, criptógrafo, filósofo y biólogo teórico
+            británico.​​​​​Está considerado uno de los padres de la ciencia de la computación y precursor de la
+            informática moderna. Wikipedia
+            Nacimiento: 23 de junio de 1912, Maida Vale, Londres, Reino Unido
+            Fallecimiento: 7 de junio de 1954, Wilmslow, Reino Unido
+            Influenciado por: Alonzo Church, Kurt Gödel, Ludwig Wittgenstein, Max Newman
+            Lugar de sepelio: Woking Crematorium, Woking, Reino Unido
+            Hermanos: John Turing
+            Educación: Universidad de Princeton (1936–1938), MÁS</p>
+    </aside>
+
+    <article id="Productos">
+        <h1>Titulo</h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis in at suscipit autem eos laudantium
+            excepturi dolorem. Eos quam nemo, in illum optio, reprehenderit magni iusto eaque necessitatibus, laborum
+            nesciunt?Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde necessitatibus voluptatem omnis
+            quisquam, tempora odit ut ipsa eveniet deleniti ipsum cupiditate quae harum iure, laborum quos fugit
+            officiis doloribus animi?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora omnis earum
+            sapiente. Nesciunt quae sapiente facilis omnis quam suscipit aut voluptate ab perspiciatis vero facere,
+            repellendus itaque quo maxime corrupti!
+        </p>
+    </article>
+    
+    <section id="Home">
+        <h3>Formulario de registro</h3>
+        <form action="post" enctype="multipart/form-data">
+            <fieldset>
+                <Label for="Nomb">Nombre y apellido: </Label> <input type="text" id="Nomb"
+                    placeholder="Fulanito de tal"><br>
+                <Label for="Email">Dirección de correo electronico: </Label> <input type="email" id="Email"
+                    placeholder="Ejemplo@gmail.com"><br>
+                <Label for="Contr">Contraseña: </Label> <input type="password" id="Contr"><br>
+                <Label for="Email">Correo: </Label> <input type="email" id="Email">
+                <p>Genero: </p>
+                <input type="radio" id="Mujer" name="Genero" value="Mujer"> <Label for="Mujer">Mujer</Label>
+                <input type="radio" id="Hombre" name="Genero" value="Hombre"> <Label for="Hombre">Hombre</Label>
+                <input type="radio" id="Otro" name="Genero" value="Otro"> <Label for="Otro">Otro</Label>
+
+                <br>
+                <p>Lenguajes que conoces:</p>
+                <input type="checkbox" id="Html" value="" name="leng[]"> <Label for="Html">Html</Label>
+                <input type="checkbox" id="CSS" value="css" name="leng[]"> <Label for="CSS">CSS</Label>
+                <input type="checkbox" id="JavaScript" value="" name="leng[]"> <Label
+                    for="JavaScript">JavaScript</Label>
+                <input type="checkbox" id="Java" value="" name="leng[]"> <Label for="Java">Java</Label>
+
+                <br>
+                <Label for="CV">Subir CV</Label><button type="button"><input type="file">
+                    <br>
+                    <input type="submit" id="submit" name="Enviar">
+                    <input type="reset" id="reset" name="Borrar">
+            </fieldset>
+        </form>
+    </section>
+    <footer id="Para Empresas">
+        <p>Todes lerechos resrvados</p>
+        <a href="#Start">Volver</a>
+    </footer>
+
+</body>
+
+</html>
