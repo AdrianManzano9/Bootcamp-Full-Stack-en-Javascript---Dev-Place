@@ -1,0 +1,178 @@
+$primary: #1a237e;
+$P-Light: #534bae;
+$P-Dark: #000051;
+
+body {
+    background-color: $P-Light;
+}
+
+a {
+    color: black;
+}
+
+#navegador {
+    background-color: $primary;
+    display: flex;
+    flex-direction: row-reverse;
+    height: 50px;
+    align-items: center;
+
+    ul {
+        text-align: end;
+        
+
+        li {
+            display: inline;
+            margin: 0 10px 0 0;
+
+            a {
+                padding: 2px 7px 2px 7px;
+                color: (43, 40, 238);
+                text-decoration: none;
+
+                
+            }
+            :hover {
+                background-color: $P-Dark;
+                color: #ffffff;
+            }
+        }
+    }
+
+
+}
+
+article {
+    display: flex;
+    align-content: space-around;
+    width: 100%;
+
+    .tarjeta {
+        width: 420px;
+        border: 1px solid lightgray;
+        box-shadow: 2px 2px 8px 4px #d3d3d3d1;
+        border-radius: 15px;
+        font-family: sans-serif;
+
+        .cuerpo {
+            padding: 10px;
+        }
+    }
+
+    Img {
+        width: 100%;
+    }
+
+    .pie {
+        background: $P-Light;
+        border-radius: 0 0 15px 15px;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .pie2 {
+        background: darkmagenta;
+        border-radius: 0 0 15px 15px;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .pie3 {
+        background: greenyellow;
+        border-radius: 0 0 15px 15px;
+        padding: 10px;
+        text-align: center;
+    }
+}
+
+.titulo {
+    font-size: 24px;
+    padding: 10px 10px 0 10px;
+    ;
+}
+
+#formulario {
+    width: min-content;
+
+    form {
+        background-color: $P-Light;
+        width: min-content;
+        font-family: Georgia;
+        padding: 40px;
+        width: min-content;
+        color: black;
+        margin: 10px;
+
+        h3 {
+            text-align: center;
+            font-size: x-large;
+        }
+
+        #submit {
+            background-color: green;
+
+            :hover {
+                background-color: darkgreen;
+            }
+
+            :active {
+                background-color: rgb(73, 128, 0);
+            }
+        }
+
+        #reset {
+            background-color: red;
+
+            :hover {
+                background-color: darkred;
+            }
+
+            :active {
+                background-color: rgb(255, 115, 0);
+            }
+
+        }
+
+    }
+}
+
+#Partners {
+    display: grid;
+}
+
+#Quilmes {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#Leys {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#Naldo {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+@media (max-width: 800px) {
+    #Naldo {
+        grid-column: 1;
+        grid-row: 3;
+    }
+}
+
+#TNT {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+footer {
+    text-align: center;
+    color: white;
+    background-color: black;
+    position: absolute;
+    width: 100%;
+    clear: both;
+    margin: -10px;
+}

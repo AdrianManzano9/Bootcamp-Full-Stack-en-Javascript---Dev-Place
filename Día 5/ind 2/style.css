@@ -1,0 +1,152 @@
+body {
+  background-color: #534bae;
+}
+
+a {
+  color: black;
+}
+
+#navegador {
+  background-color: #1a237e;
+  display: flex;
+  flex-direction: row-reverse;
+  height: 50px;
+  align-items: center;
+}
+#navegador ul {
+  text-align: end;
+}
+#navegador ul li {
+  display: inline;
+  margin: 0 10px 0 0;
+}
+#navegador ul li a {
+  padding: 2px 7px 2px 7px;
+  color: 43, 40, 238;
+  text-decoration: none;
+}
+#navegador ul li :hover {
+  background-color: #000051;
+  color: #ffffff;
+}
+
+article {
+  display: flex;
+  align-content: space-around;
+  width: 100%;
+}
+article .tarjeta {
+  width: 420px;
+  border: 1px solid lightgray;
+  box-shadow: 2px 2px 8px 4px rgba(211, 211, 211, 0.8196078431);
+  border-radius: 15px;
+  font-family: sans-serif;
+}
+article .tarjeta .cuerpo {
+  padding: 10px;
+}
+article Img {
+  width: 100%;
+}
+article .pie {
+  background: #534bae;
+  border-radius: 0 0 15px 15px;
+  padding: 10px;
+  text-align: center;
+}
+article .pie2 {
+  background: darkmagenta;
+  border-radius: 0 0 15px 15px;
+  padding: 10px;
+  text-align: center;
+}
+article .pie3 {
+  background: greenyellow;
+  border-radius: 0 0 15px 15px;
+  padding: 10px;
+  text-align: center;
+}
+
+.titulo {
+  font-size: 24px;
+  padding: 10px 10px 0 10px;
+}
+
+#formulario {
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+}
+#formulario form {
+  background-color: #534bae;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  font-family: Georgia;
+  padding: 40px;
+  width: min-content;
+  color: black;
+  margin: 10px;
+}
+#formulario form h3 {
+  text-align: center;
+  font-size: x-large;
+}
+#formulario form #submit {
+  background-color: green;
+}
+#formulario form #submit :hover {
+  background-color: darkgreen;
+}
+#formulario form #submit :active {
+  background-color: rgb(73, 128, 0);
+}
+#formulario form #reset {
+  background-color: red;
+}
+#formulario form #reset :hover {
+  background-color: darkred;
+}
+#formulario form #reset :active {
+  background-color: rgb(255, 115, 0);
+}
+
+#Partners {
+  display: grid;
+}
+
+#Quilmes {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+#Leys {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+#Naldo {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+@media (max-width: 800px) {
+  #Naldo {
+    grid-column: 1;
+    grid-row: 3;
+  }
+}
+#TNT {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+footer {
+  text-align: center;
+  color: white;
+  background-color: black;
+  position: absolute;
+  width: 100%;
+  clear: both;
+  margin: -10px;
+}/*# sourceMappingURL=style.css.map */
