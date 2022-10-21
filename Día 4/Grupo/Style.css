@@ -1,0 +1,44 @@
+.navbar{
+    width: 100vw;
+}
+.carrusel{
+    height: 25vh;
+    width: 25vw;
+    align-items: center;
+
+}
+footer{
+    width: 100vw;
+    height: 30vh;
+}
+header{
+    height: 50vh;
+}
+.collapse navbar-collapse{
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+}
+.mover{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+
+}
+footer{
+    display: flex;
+    flex-direction: column;
+}
+.ordenItems{
+    width: 20vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.noel{
+    display: flex;
+
+}
+.background{
+    background-color: lightgreen !important;
+}
