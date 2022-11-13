@@ -101,4 +101,12 @@ Ordenarlos de manera Descendente
   sin conocer los números que ha elegido cada jugador, selecciona 2 números A y B. */
 
 
- let valoresJug1 = document.querySelectorAll(input.extends(#Jug1) );
+let inputsJug1 = document.querySelectorAll('#jug1 > input');
+let inputsJug2 = document.querySelectorAll('#jug2 > input');
+let inputsJug3 = document.querySelectorAll('#jug3 > input');
+let boton = document.getElementById('enviar');
+boton.onclick=()=>{
+    inputsJug1.forEach(input =>{
+        console.log(input.value);
+    }); 
+}
