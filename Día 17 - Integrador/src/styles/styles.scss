@@ -1,0 +1,264 @@
+$Primary: #303f9f;
+$P-Light: #666ad1;
+$P-Dark: #001970;
+$P-Text: #ffffff;
+$Secondary: #bbdefb;
+$S-Dark: #8aacc8;
+$S-Text: #0d47a1;
+
+* {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+html {
+    min-height: 100%;
+    position: relative;
+    background-color: $P-Light;
+}
+
+* {
+    ::-webkit-scrollbar {
+        background: $P-Light ;
+        width: 7px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: $S-Dark;
+        border-radius: 5px;
+    }
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto minmax(40px, auto);
+    background-color: $P-Light;
+}
+
+a {
+    text-decoration: none;
+    color: #212529;
+}
+
+#nav {
+    background-color: $P-Dark !important;
+    color: $P-Text !important;
+
+    #Logo {
+        text-decoration: none;
+        font-size: x-large;
+    }
+
+    #search {
+        width: 55%;
+    }
+
+    #count {
+        font-size: xx-small !important;
+        border-radius: 50%;
+        background-color: red;
+        width: 15px;
+        text-align: center;
+    }
+
+    a {
+        color: $P-Text !important;
+    }
+
+}
+
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-exit {
+    opacity: 1;
+}
+
+.fade-enter-active {
+    opacity: 1;
+}
+
+.fade-exit-active {
+    opacity: 0;
+}
+
+.fade-enter-active,
+.fade-exit-active {
+    transition: opacity 300ms;
+}
+
+#carouselExampleDark {
+    grid-column-end: span 2;
+
+    img {
+        margin-left: 9%;
+        margin-right: 3%;
+    }
+
+    button{
+        background-color: transparent;
+        align-self: center;
+    }
+
+    .compar{
+        background-color: $Secondary;
+    }
+}
+
+#i-cart {
+    width: 2rem;
+}
+
+#Products {
+    background-color: $Primary;
+
+    .nav-link {
+        font-size: x-small !important;
+    }
+}
+
+article {
+    grid-column-end: span 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#cart {
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-height: 450px;
+    overflow-y: scroll;
+}
+
+@media (max-width: 1300px) {
+    #carouselExampleDark {
+        .carousel-text {
+            width: 75% !important;
+            height: 75% !important;
+            padding-left: 20%;
+        }
+
+    }
+
+    #cart #carouselExampleDark img {
+        display: none !important;
+    }
+
+    main {
+        grid-template-columns: 100%;
+    }
+
+}
+
+
+button {
+    border: none;
+    border-radius: 20%;
+    padding: 5px;
+    color: $S-Text;
+
+    :hover {
+        color: $P-Dark;
+    }
+
+    :active {
+        color: black;
+    }
+
+}
+
+.compar {
+    color: $S-Text ;
+    background: $S-Dark;
+    padding: 5px;
+
+    :hover {
+        background: black !important;
+    }
+
+}
+
+.card {
+    background: $Secondary;
+    margin: 5px;
+    width: 8rem;
+    font-size: xx-small;
+    text-align: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-shadow: 5px 5px 5px $P-Dark;
+
+    img {
+        margin-top: 5px;
+        width: 7rem;
+
+    }
+
+    h5 {
+        font-size: small;
+    }
+
+    a {
+        font-size: xx-small;
+        width: 5rem;
+        align-self: flex-end;
+        order: 1;
+    }
+
+    .count {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        button{
+        background-color: transparent;
+        }
+
+    }
+}
+
+#FreQuestions {
+    grid-column-end: span 2;
+}
+
+.form {
+    padding: 10%;
+    margin-bottom: 35px;
+    height: 100%;
+    width: 100%;
+
+}
+
+#Suscrib, #marca-general {
+    background-color: #9A9196 ;
+   
+}
+
+
+
+#marca-general {
+    h3{
+        text-align: center;
+        color: $S-Text;
+        background-color: #9A9196;
+        padding: 10px;
+    }
+}
+
+footer {
+    background-color: $S-Dark;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+}
