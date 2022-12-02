@@ -1,0 +1,14 @@
+body {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+
+    form {
+        label{
+            display: block;
+        }
+        input {
+            width: 22%;
+        }
+    }
+}
