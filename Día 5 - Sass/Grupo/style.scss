@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :root {
     --row: 4;
 }
@@ -68,4 +69,76 @@ nav,
 #selector {
     height: 50%;
     width: 100%;
+=======
+:root {
+    --row: 4;
+}
+
+@media (max-width: 1150px) {
+    :root {
+        --row: 3;
+    }
+}
+
+@media (max-width: 890px) {
+    :root {
+        --row: 2;
+    }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: grid;
+    grid-template: 56px 56px 1fr/ 7vw 1fr;
+}
+
+header,
+aside {
+    background-color: #202020;
+}
+
+header {
+    grid-area: 1/2/3/4;
+
+    nav {
+        img {
+            width: 100px;
+        }
+    }
+}
+
+aside {
+    grid-area: 1/1/4/2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+        width: 70%;
+    }
+}
+
+article {
+    background-color: #181818;
+    grid-area: 3/2/4/3;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: baseline;
+
+    .card {
+        width:calc(90%/var(--row)) ;
+        height: calc(42vw/var(--row));
+        background-color: aliceblue;
+        margin-top: 20px;
+    }
+}
+
+nav,
+#selector {
+    height: 50%;
+    width: 100%;
+>>>>>>> eed8f6816805a5f9779eafa38c5fc1c54b51f99c
 }
