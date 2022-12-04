@@ -33,8 +33,9 @@ function App() {
             <Route path='/FreQuestions' element={<FreQuestions />} />
             <Route path='/Form/*' element={<Form />} />
             <Route path='/Cart' element={<Cart />} />
+            <Route path='/Admin' element={<FormProd/>} />
           </Routes>
-            <FormProd/>
+            
 
           <Footer />
         </main>

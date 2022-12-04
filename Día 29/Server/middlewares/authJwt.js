@@ -16,7 +16,7 @@ verifyToken = (req, res, next) => {
 }
 isAdmin = (req, res, next) => {
     let id = req.userId
-    User.findByPk(id, { include: ['admins'] }).then((user) => {
+    User.findByPk(id, { attributes : ['admin'] }).then((user) => {
         if (user.admin) {
             next();
         } else {

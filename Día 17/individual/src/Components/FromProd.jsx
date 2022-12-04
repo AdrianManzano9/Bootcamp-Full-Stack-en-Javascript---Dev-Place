@@ -3,6 +3,9 @@ import { useState } from "react";
 export function FormProd() {
     const [inputs, setInputs] = useState({});
 
+    
+        
+    
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -21,8 +24,9 @@ export function FormProd() {
                     'x-access-token': localStorage.getItem("token")
                 },
                 body: JSON.stringify(inputs)
-            })
-            alert("Guadado Exitosamente")
+            }).then(
+                alert("Guadado Exitosamente"))
+
         } else {
             alert("Faltan datos")
         }
@@ -70,6 +74,44 @@ export function FormProd() {
                     </div>
                     <button type="submit" className="my-4 col-7align-items-center m-auto">Enviar</button>
                 </form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* {
+                            fetch('http://127.0.0.1:5050/product', {
+                                method: 'GET',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                }
+                            }).then(response => response.json())
+                                .then(data => {
+                                     data.data.map((prod) => {
+                                        <tr>
+                                           { Object.values(prod)}
+                                        </tr>
+                                    })
+                                })
+                        } */}
+
+
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
             </div>
         </div>
     )
