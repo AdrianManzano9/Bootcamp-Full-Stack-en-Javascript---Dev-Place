@@ -1,4 +1,5 @@
 import  {Form} from './Components/Form';
+import { ImgForm } from './Components/ImgForm';
 import './App.css';
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       </header>
       <main>
         <Form/>
+        <ImgForm/>
       </main>
     </div>
   );

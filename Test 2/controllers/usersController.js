@@ -1,5 +1,6 @@
 const {User} = require("../models/usuario.model")
 const bcrypt = require('bcrypt') 
+const jwt = require('jsonwebtoken');
 
 const createUser = async (req, res) => {
     try {
@@ -7,6 +8,7 @@ const createUser = async (req, res) => {
             surname: req.body.surname,
             email: req.body.email,
             password: bcrypt.hashSync(req.body.password, 10),
+            rol: 1
         }
         User.create(modelData);
         var tokenAccess= jwt.sign({surname: modelData.surname},process.env.SECRET,{
@@ -26,7 +28,8 @@ const updateRolUser=async (req, res)=>{
     }).then((data) => {
         const modelData = {
             email: data.email,
-            password: data.password
+            password: data.password,
+            rol: 2
         }
         const response = User.update(modelData, {
             where: { surname: req.userSurname }

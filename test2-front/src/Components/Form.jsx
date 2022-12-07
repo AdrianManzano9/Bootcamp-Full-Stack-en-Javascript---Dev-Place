@@ -20,7 +20,7 @@ export function Form() {
                 body: JSON.stringify(inputs)
             }).then(response => response.json())
                 .then(data => localStorage.setItem("token", data.tokenAccess));
-            alert("Secion Iniciada")
+            alert("Registredo exitosamente")
             setInputs({})
         } else {
             alert("Faltan datos")
