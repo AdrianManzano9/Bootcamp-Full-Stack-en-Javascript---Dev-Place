@@ -7,10 +7,11 @@ var product= sequelize.define('product',{
         primaryKey:true,
         autoIncrement:true 
     },
-    name: Sequelize.STRING,
-    image:Sequelize.TEXT,
+    nombre: Sequelize.STRING,
+    linkImg:Sequelize.TEXT,
     descrip: Sequelize.STRING,
     precio: Sequelize.DOUBLE,
+    cant: Sequelize.INTEGER,
     cantD: Sequelize.INTEGER,
 });
 

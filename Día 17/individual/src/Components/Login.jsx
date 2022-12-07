@@ -19,16 +19,16 @@ export function Login() {
                 },
                 body: JSON.stringify(inputs)
             }).then(response => response.json())
-            .then(data => localStorage.setItem("token", data.tokenAccess)&&alert("Logueado Exitosamente"));
-
-            
+                .then(data => localStorage.setItem("token", data.tokenAccess));
+            alert("Secion Iniciada")
+            setInputs({})
         } else {
             alert("Faltan datos")
         }
     }
     return (
         <div id="Login">
-        <h6>¿No tienes una cuenta? <Link to={'../'}>Registrate</Link></h6>
+            <h6>¿No tienes una cuenta? <Link to={'../'}>Registrate</Link></h6>
             <form onSubmit={handleSubmit} className="row g-8 align-items-center  form" >
 
                 <div className=" align-items-center">

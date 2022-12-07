@@ -6,8 +6,8 @@ const {verifyToken,isAdmin} = require('../middlewares/authJwt')
 product.get('/', getProds);
 product.post('/',verifyToken, isAdmin, createProd);
 product.get('/:id', findProdById);
-product.put('/:id',UpdateProdById);
-product.delete('/:id',deleteProdById);
+product.put('/:id',verifyToken,isAdmin, UpdateProdById);
+product.delete('/:id',verifyToken, isAdmin,deleteProdById);
 
 module.exports=product;
 

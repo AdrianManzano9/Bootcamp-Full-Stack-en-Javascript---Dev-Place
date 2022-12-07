@@ -28,6 +28,15 @@ html {
     }
 }
 
+#Loader{
+width: calc(100vw/1.5);
+height: calc(100vh/1.5);
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: $Primary;
+}
+  
 main {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -96,12 +105,20 @@ a {
         margin-right: 3%;
     }
 
-    button {
+    .count{ 
+        display: flex;
+        justify-content: center;
+        button {
         background-color: transparent;
-        align-self: center;
     }
 
-    .compar {
+    .cantD{
+        margin-top: 15px;
+    }
+}
+
+    
+    .comprar {
         background-color: $Secondary;
     }
 }
@@ -173,15 +190,11 @@ button:active {
     background-color: rgba($color: #fff, $alpha: .4)
 }
 
-.compar {
+.comprar {
     color: $S-Text ;
     background: $S-Dark;
     padding: 5px;
-
-    :hover {
-        background: black !important;
-    }
-
+    
 }
 
 .card {
@@ -197,10 +210,15 @@ button:active {
     flex-wrap: wrap;
     box-shadow: 5px 5px 5px $P-Dark;
 
-    img {
-        margin-top: 5px;
-        width: 7rem;
-
+    .div-Img{
+        height: 52%;
+        img {
+            margin-top: 5px;
+            width: 7rem;
+        }
+    }
+    p{
+        margin-bottom: 10px;
     }
 
     h5 {
@@ -214,6 +232,10 @@ button:active {
         order: 1;
     }
 
+    .div-buttons{
+        height: 50%;
+    }
+
     .count {
         display: flex;
         flex-wrap: wrap;
@@ -224,8 +246,11 @@ button:active {
         }
 
     }
+    
 }
-
+.cantD{
+        color: red;
+    }
 #FreQuestions {
     grid-column-end: span 2;
 }
@@ -234,7 +259,6 @@ button:active {
     padding: 10%;
     margin-bottom: 35px;
     width: 100%;
-
 }
 
 #Suscrib,#Login,
@@ -288,6 +312,21 @@ button:active {
         text-align: center;
         background-color: rgba($color: #fff, $alpha: 0.5);
         align-self: center;
+    }
+
+    #t-prods{
+
+        td,th{
+            border:solid black ;
+            padding: 10px;
+            word-wrap: break-word; 
+
+            max-width: calc(20vw/1.5);
+        }
+
+        th{
+            background-color: rgba($P-Light, $alpha: 0.5);
+        }
     }
 
     input,

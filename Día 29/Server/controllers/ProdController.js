@@ -16,10 +16,11 @@ const getProds = async (req, res) => {
 const createProd = async (req, res) => {
     try {
         const modelData = {
-            name: req.body.name,
-            image: req.body.image,
+            nombre: req.body.nombre,
+            linkImg: req.body.linkImg,
             descrip: req.body.descrip,
             precio: req.body.precio,
+            cant: req.body.cant,
             cantD: req.body.cantD,
         }
         const response = await product.create(modelData)

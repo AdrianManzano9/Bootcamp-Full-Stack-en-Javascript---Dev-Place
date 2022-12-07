@@ -1,16 +1,21 @@
 import { useContext } from "react";
 import AppContext from "../contexts/AppContext";
-import { productos } from "../productos";
 import { useEffect, useState } from "react";
 import { Carousel } from "./Carousel";
 import { Link } from "react-router-dom";
 
 
 export function Cart() {
-    const { setCount, count } = useContext(AppContext);
+    const { setCount, count, productos, mostrarDatos } = useContext(AppContext);
     var total = 0;
     const [inputs, setInputs] = useState({});
     const [dateCard, setdateCard] = useState({});
+
+    let filtProd = productos.filter((prod) => {
+        return (
+            prod.cant > 0
+        )
+    })
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -25,27 +30,14 @@ export function Cart() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
         if (Object.values(inputs).length === 4 && inputs.tPago !== "Tarjeta de crédito" && inputs.tPago !== "Tarjeta de débito") {
-            console.table(inputs)
-            fetch('http://127.0.0.1:5050/order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(inputs)
-            })
-            alert("Guadado Exitosamente")
+            guardarOrden(inputs);
+            alert("Guadado Exitosamente");
+
         } else if (Object.values(dateCard).length === 2 && Object.values(inputs).length === 4) {
-            console.table(dateCard)
-            console.table(inputs)
             const date = { ...inputs, ...dateCard }
-            fetch('http://127.0.0.1:5050/order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(date)
-            })
+            guardarOrden(date);
             alert("Guadado Exitosamente")
 
         } else {
@@ -55,12 +47,39 @@ export function Cart() {
 
     }
 
-
-    let filtProd = productos.filter((prod) => {
-        return (
-            prod.cant > 0
-        )
-    })
+    const guardarOrden = (date) => {
+        fetch('http://127.0.0.1:5050/order', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': localStorage.getItem("token")
+            },
+            body: JSON.stringify(date)
+        }).then(response => response.json()).then(e => {
+            filtProd.map((prod) => {
+                var date = {
+                    orderId: e.data.id,
+                    cant: prod.cant,
+                    precio: prod.precio,
+                    descrip: prod.descrip,
+                    prodId: prod.id,
+                    cantD: prod.cantD - prod.cant,
+                }
+                console.log(date);
+                fetch('http://127.0.0.1:5050/dOrder', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(date)
+                }).then(() => {
+                    setInputs({});
+                    setdateCard({});
+                    mostrarDatos();
+                })
+            })
+        })
+    }
     const [time, setTime] = useState(new Date().toLocaleString());
     useEffect(() => {
         setTimeout(() => {
@@ -105,7 +124,7 @@ export function Cart() {
                 }
             </div>
             <form onSubmit={handleSubmit} className=" form p-4">
-                
+
                 <div className="mb-1">
                     <label
                         className="form-label">Dirección</label>
@@ -143,7 +162,7 @@ export function Cart() {
                                         onChange={cardHandleChange} type="number" className="form-control  h-50 w-75" id="exampleInputEmail1" aria-describedby="emailHelp" />
                                 </div>
                                 <div>
-                                    <label 
+                                    <label
                                         className="form-label  ">Fecha de caducidad</label>
                                     <input name="fTarjeta"
                                         value={inputs.fTarjeta}

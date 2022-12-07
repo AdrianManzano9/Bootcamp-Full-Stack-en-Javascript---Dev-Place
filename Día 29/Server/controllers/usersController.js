@@ -1,8 +1,24 @@
 const {User} = require('../models/user.model')
+const {order} = require('../models/order.model')
+const {detOrder} = require('../models/detOrder.model')
+const {product} = require('../models/prod.model')
 const bcrypt = require('bcrypt')
 
 const getUser = async (req, res)=>{
-    const response = await User.findAll().then((data) => {
+    const response = await User.findAll({
+        include:[
+        {
+            model: order,
+            as: "orders",
+            attributes: ['direction','time','tPago','total'],
+            include:{
+                model: detOrder,
+                as: "dOrders",
+                attributes: ['cant','precio','descrip'],
+            }
+        }],
+        attributes: ['name','surname','email','admin']
+    } ).then((data) => {
         const res = { error: false, data: data }
         return res;
     }).catch(error => {
@@ -28,6 +44,7 @@ const createUser = async (req, res) => {
                 const res = { error: true, message: error }
                 return res;
             });
+            
         res.json(response);
     } catch (e) {
         console.log(e)

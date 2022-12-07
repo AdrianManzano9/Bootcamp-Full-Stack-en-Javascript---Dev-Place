@@ -18,12 +18,29 @@ export function Subsc() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(inputs)
+            }).then(response => response.json()).then(e => {
+                console.log(e)
+                const data = {
+                    email: inputs.email,
+                    password: inputs.password
+                }
+    
+                fetch('http://127.0.0.1:5050/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                }).then(response => response.json())
+                .then(data => localStorage.setItem("token", data.tokenAccess));
             })
-
+            setInputs({})
             alert("Guadado Exitosamente")
+            
         } else {
             alert("Faltan datos")
         }
+        
     }
     return (
         <div id="Suscrib">

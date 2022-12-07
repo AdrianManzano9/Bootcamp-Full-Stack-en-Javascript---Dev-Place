@@ -1,13 +1,12 @@
 import CarritoB from '../Img/CarritoB.png'
-import { useContext } from 'react';
+import { useContext} from 'react';
 import AppContext from '../contexts/AppContext';
 import { Link } from 'react-router-dom';
-import { productos } from '../productos';
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 
 
 export function Nav(props) {
-    const { search, setSearch, count } = useContext(AppContext);
+    const { search, setSearch, count, productos} = useContext(AppContext);
 
     const handleSearch = (event) => {
         event.preventDefault();
@@ -36,10 +35,10 @@ export function Nav(props) {
                                     classNames='fade'
                                 >
                                     <p className='' id='count'>{productos.filter((prod) => { return (prod.cant > 0) }).length}</p>
-                                    </CSSTransition>
+                                </CSSTransition>
                             </SwitchTransition>
                             <Link to='/Cart'> <img id='i-cart' src={CarritoB} alt="Carrito" /></Link>
-                             </div>
+                        </div>
                     </li>
 
                 </ul>

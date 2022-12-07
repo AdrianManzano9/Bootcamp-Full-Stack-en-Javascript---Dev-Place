@@ -20,7 +20,7 @@ var order = sequelize.define('order', {
     },
     nTarjeta: Sequelize.INTEGER,
     fTarjeta: Sequelize.DATEONLY,
-    total: Sequelize.INTEGER
+    total: Sequelize.INTEGER,
 }
     // , {
     //     defaultScope: {
@@ -51,26 +51,10 @@ const ValidateOrder = (req, res, next) => {
                 'string.empty': "Ingresa el Tipo de pago",
                 'any.required': "Ingresa el Tipo de pago"
             }),
-        nTarjeta: Joi.required()
-            .messages({
-                'string.empty': "Ingresa el Numero de tarjeta",
-                'any.required': "Ingresa el Numero de tarjeta"
-            }),
-        fTarjeta: Joi.required()
-            .messages({
-                'string.empty': "Ingresa el Ingresa la fecha de tarjeta",
-                'any.required': "Ingresa el Ingresa la fecha de tarjeta"
-            }),
         total: Joi.required()
             .messages({
                 'string.empty': "Falta el total",
                 'any.required': "Falta el total"
-            }),
-        product: Joi.number().integer().required()
-            .messages({
-                'number.empty': "Ingresa la categoria del producto",
-                'number.integer': "Ingresa la categoria del producto",
-                'any.required': "Ingresa la categoria del producto"
             })
     });
 
