@@ -10,6 +10,6 @@ User.belongsTo(rol, {
 rol.sync()
 User.sync()
 database.sync().then(() => {
-    rol.create({ id: 1, name: "comun" });
-    rol.create({ id: 2, name: "premiun" });
+    // rol.create({ id: 1, name: "comun" });
+    // rol.create({ id: 2, name: "premiun" });
 });

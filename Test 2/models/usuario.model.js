@@ -8,7 +8,7 @@ var User = sequelize.define('user', {
         type: Sequelize.STRING,
         primaryKey: true,
     },
-    mail: {
+    email: {
         type: Sequelize.STRING,
         unique: true,
         validate: {
@@ -24,11 +24,11 @@ const ValidateUser = (req, res, next) => {
     const schema = Joi.object({
         surname: Joi.string().min(3).max(30).required()
         .messages({
-            'string.empty': "Ingresa el Apellido",
-            'string.min': "El Apellido debe ser mayor a 3 caracteres",
-            'any.required': "Ingresa el Apellido"
+            'string.empty': "Ingresa el Nombre",
+            'string.min': "El Nombre debe ser mayor a 3 caracteres",
+            'any.required': "Ingresa el Nombre"
         }),
-        mail:Joi.string().email().required().messages({
+        email:Joi.string().email().required().messages({
             'email.empty': "Ingresa el email",
             'any.required': "Ingresa el email"
         }),

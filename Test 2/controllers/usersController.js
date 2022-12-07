@@ -8,18 +8,37 @@ const createUser = async (req, res) => {
             email: req.body.email,
             password: bcrypt.hashSync(req.body.password, 10),
         }
-        const response = await User.create(modelData)
-            .then((data) => {
-                const res = { error: false, data: data, message: "Usuario creado" }
-                return res;
-            }).catch(error => {
-                const res = { error: true, message: error }
-                return res;
-            });
-        res.json(response);
+        User.create(modelData);
+        var tokenAccess= jwt.sign({surname: modelData.surname},process.env.SECRET,{
+            expiresIn:86400
+        });
+        res.status(200).send({
+            tokenAccess
+        })  
     } catch (e) {
         console.log(e)
     }
 }
+const updateRolUser=async (req, res)=>{
+    
+    User.findAll({
+        where: { surname: req.userSurname }
+    }).then((data) => {
+        const modelData = {
+            email: data.email,
+            password: data.password
+        }
+        const response = User.update(modelData, {
+            where: { surname: req.userSurname }
+        })((data) => {
+            const res = { error: false, data: data, message: "Prodeucto Actualizado" }
+            return res;
+        }).catch(error => {
+            const res = { error: true, message: error }
+            return res;
+        });
+        res.json(response);
+    })
 
-module.exports= {createUser}
+}
+module.exports= {createUser, updateRolUser}
