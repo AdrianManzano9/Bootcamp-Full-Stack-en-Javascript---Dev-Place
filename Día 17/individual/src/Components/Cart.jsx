@@ -33,15 +33,12 @@ export function Cart() {
 
         if (Object.values(inputs).length === 4 && inputs.tPago !== "Tarjeta de crédito" && inputs.tPago !== "Tarjeta de débito") {
             guardarOrden(inputs);
-            alert("Guadado Exitosamente");
 
         } else if (Object.values(dateCard).length === 2 && Object.values(inputs).length === 4) {
             const date = { ...inputs, ...dateCard }
             guardarOrden(date);
-            alert("Guadado Exitosamente")
 
         } else {
-            console.log(Object.values(inputs))
             alert("Faltan datos")
         }
 
@@ -55,30 +52,40 @@ export function Cart() {
                 'x-access-token': localStorage.getItem("token")
             },
             body: JSON.stringify(date)
-        }).then(response => response.json()).then(e => {
-            filtProd.map((prod) => {
-                var date = {
-                    orderId: e.data.id,
-                    cant: prod.cant,
-                    precio: prod.precio,
-                    descrip: prod.descrip,
-                    prodId: prod.id,
-                    cantD: prod.cantD - prod.cant,
-                }
-                console.log(date);
-                fetch('http://127.0.0.1:5050/dOrder', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(date)
-                }).then(() => {
-                    setInputs({});
-                    setdateCard({});
-                    mostrarDatos();
+        }).then(response =>{
+            if(response.status===200){
+                response.json().then(e => {
+                    filtProd.map((prod) => {
+                        var date = {
+                            orderId: e.data.id,
+                            cant: prod.cant,
+                            precio: prod.precio,
+                            descrip: prod.descrip,
+                            prodId: prod.id,
+                            cantD: prod.cantD - prod.cant,
+                        }
+                        fetch('http://127.0.0.1:5050/dOrder', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(date)
+                        }).then((response) => {
+                            setInputs({});
+                            setdateCard({});
+                            mostrarDatos();
+                        })
+                    })
+                    alert(e.message)
                 })
-            })
-        })
+            }else if(response.status===401){
+                response.json().then(e=>{alert(e.message)})
+            } else{
+                alert('Error')
+                console.log(response)
+                console.log(response.json().then(e=>{alert(e.message)}))
+            }
+        }) 
     }
     const [time, setTime] = useState(new Date().toLocaleString());
     useEffect(() => {

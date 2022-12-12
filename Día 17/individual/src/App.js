@@ -19,6 +19,7 @@ function App() {
   const [shopping, setShopping] = useState();
   const [count, setCount] = useState(0);
   const [productos, setProds] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   const mostrarDatos = async () => {
     await fetch('http://127.0.0.1:5050/product', {
@@ -30,6 +31,15 @@ function App() {
 
       setProds(e.data);
     })
+    await fetch('http://127.0.0.1:5050/category', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then(response => response.json()).then(e => {
+      setCategories(e.data);
+    })
+
   }
   useEffect(() => {
     mostrarDatos()
@@ -53,7 +63,7 @@ function App() {
 
   return (
     <div className="App">
-      <AppContext.Provider value={{ category, setCategory, search, setSearch, shopping, setShopping, count, setCount, productos, mostrarDatos }}>
+      <AppContext.Provider value={{ category, setCategory, search, setSearch, shopping, setShopping, count, setCount, productos, categories, mostrarDatos }}>
         <header>
 
           <Nav />

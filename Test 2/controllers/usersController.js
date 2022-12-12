@@ -34,7 +34,7 @@ const updateRolUser=async (req, res)=>{
         const response = User.update(modelData, {
             where: { surname: req.userSurname }
         })((data) => {
-            const res = { error: false, data: data, message: "Prodeucto Actualizado" }
+            const res = { error: false, data: data, message: "Rol actualizado" }
             return res;
         }).catch(error => {
             const res = { error: true, message: error }

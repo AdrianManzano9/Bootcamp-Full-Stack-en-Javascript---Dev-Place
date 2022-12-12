@@ -18,9 +18,17 @@ export function Login() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(inputs)
-            }).then(response => response.json())
-                .then(data => localStorage.setItem("token", data.tokenAccess));
-            alert("Secion Iniciada")
+            }).then(response =>{
+                if(response.status===200){
+                    response.json().then(e=>{localStorage.setItem("token", e.tokenAccess)})
+                    alert("Sesión iniciada")
+                }else if(response.status===401){
+                    response.json().then(e=>{alert(e.message)})
+                } else{
+                    alert('Error')
+                    console.log(response)
+                }
+            })
             setInputs({})
         } else {
             alert("Faltan datos")

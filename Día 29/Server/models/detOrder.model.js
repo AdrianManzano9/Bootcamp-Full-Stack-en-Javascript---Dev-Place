@@ -3,7 +3,7 @@ var database = require('../config/mysql');
 const validateRequest = require('../middlewares/validateRequest');
 const Joi = require('joi');
 
-var detOrder = database.define('detalleOrden',{
+var DetOrder = database.define('detalleOrden',{
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -33,4 +33,4 @@ const ValidateDetOrder = (req, res, next) => {
     });
     validateRequest(req, res, next, schema);
 }
-module.exports= {detOrder, ValidateDetOrder}
+module.exports= {DetOrder, ValidateDetOrder}

@@ -13,7 +13,11 @@ var User = sequelize.define('user', {
     surname: Sequelize.STRING,
     email: {
         type: Sequelize.STRING,
-        unique: true,
+        unique: {
+            args: true,
+            msg: 'Ya hay una cuenta registrada con este mail. Intenta iniciar sesión.',
+            fields: [sequelize.fn('lower', sequelize.col('email'))]
+        },
         validate: {
             isEmail: {
                 msg: "Email valido",
@@ -38,12 +42,14 @@ const ValidateUser = (req, res, next) => {
         .messages({
             'string.empty': "Ingresa el Nombre",
             'string.min': "El nombre debe ser mayor a 3 caracteres",
+            'string.max': "El nombre debe ser menor a 30 caracteres",
             'any.required': "Ingresa el Nombre"
         }),
         surname: Joi.string().min(3).max(30).required()
         .messages({
             'string.empty': "Ingresa el Apellido",
             'string.min': "El Apellido debe ser mayor a 3 caracteres",
+            'string.max': "El nombre debe ser menor a 30 caracteres",
             'any.required': "Ingresa el Apellido"
         }),
         email:Joi.string().email().required().messages({
@@ -52,9 +58,10 @@ const ValidateUser = (req, res, next) => {
         }),
         password: Joi.string().min(5).max(50).required()
         .messages({
-            'password.empty': "Ingresa el password",
-            'password.min': "El password debe ser mayor a 5 caracteres",
-            'any.required': "Ingresa el password"
+            'string.empty': "Ingresa una contraseña",
+            'string.min': "La contraseña debe ser mayor a 5 caracteres",
+            'string.max': "El nombre debe ser menor a 50 caracteres",
+            'any.required': "Ingresa una contraseña"
         }),
     });
 

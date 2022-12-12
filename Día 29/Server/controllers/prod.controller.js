@@ -1,9 +1,17 @@
-const product  = require('../models/prod.model');
+const {Product}  = require('../models/prod.model');
+const {Category} = require('../models/category.model')
 // const { ValidateProd } = require('../models/prod.model')
 
 
 const getProds = async (req, res) => {
-    const response = await product.findAll().then((data) => {
+    const response = await Product.findAll({
+        attributes:["id", "linkImg", "descrip", "precio", "cant", "cantD"],
+        include:{
+            model: Category,
+            as: "categories",
+            attributes: ['name','id'],
+        }
+    }).then((data) => {
         const res = { error: false, data: data }
         return res;
     }).catch(error => {
@@ -16,14 +24,14 @@ const getProds = async (req, res) => {
 const createProd = async (req, res) => {
     try {
         const modelData = {
-            nombre: req.body.nombre,
             linkImg: req.body.linkImg,
             descrip: req.body.descrip,
             precio: req.body.precio,
             cant: req.body.cant,
             cantD: req.body.cantD,
+            CategoryId: req.body.CategoryId,
         }
-        const response = await product.create(modelData)
+        const response = await Product.create(modelData)
             .then((data) => {
                 const res = { error: false, data: data, message: "Producto creado" }
                 return res;
@@ -41,7 +49,7 @@ const createProd = async (req, res) => {
 const findProdById = async (req, res) => {
     try {
         const { id } = req.params;
-        const response = await product.findAll({
+        const response = await Product.findAll({
             where: { id: id }
         }).then((data) => {
             const res = { error: false, data: data }
@@ -59,10 +67,10 @@ const findProdById = async (req, res) => {
 const UpdateProdById = async (req, res) => {
     try {
         const { id } = req.params;
-        const response = await product.update(req.body, {
+        const response = await Product.update(req.body, {
             where: { id: id }
         }).then((data) => {
-            const res = { error: false, data: data, message: "Prodeucto Actualizado" }
+            const res = { error: false, data: data, message: "Producto Actualizado" }
             return res;
         }).catch(error => {
             const res = { error: true, message: error }
@@ -78,7 +86,7 @@ const deleteProdById = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const response = await product.destroy({
+        const response = await Product.destroy({
             where: { id: id }
         }).then((data) => {
             const res = { error: false, data: data, message: "Producto borrado" }

@@ -1,14 +1,15 @@
 const express = require("express");
-const product = express.Router();
-const {getProds, createProd, findProdById, UpdateProdById, deleteProdById} = require('../controllers/ProdController');
+const ProductRouter = express.Router();
+const {getProds, createProd, findProdById, UpdateProdById, deleteProdById} = require('../controllers/prod.controller');
 const {verifyToken,isAdmin} = require('../middlewares/authJwt')
+const {ValidateProd} = require('../models/prod.model')
 
-product.get('/', getProds);
-product.post('/',verifyToken, isAdmin, createProd);
-product.get('/:id', findProdById);
-product.put('/:id',verifyToken,isAdmin, UpdateProdById);
-product.delete('/:id',verifyToken, isAdmin,deleteProdById);
+ProductRouter.get('/', getProds);
+ProductRouter.post('/',verifyToken, isAdmin,ValidateProd, createProd);
+ProductRouter.get('/:id', findProdById);
+ProductRouter.put('/:id',verifyToken,isAdmin,ValidateProd, UpdateProdById);
+ProductRouter.delete('/:id',verifyToken, isAdmin,deleteProdById);
 
-module.exports=product;
+module.exports=ProductRouter;
 
 

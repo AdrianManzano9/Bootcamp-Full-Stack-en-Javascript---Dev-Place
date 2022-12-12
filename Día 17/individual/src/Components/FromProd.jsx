@@ -2,13 +2,13 @@ import { useState, useContext } from "react";
 import AppContext from "../contexts/AppContext";
 
 export function FormProd() {
-    const {productos, mostrarDatos} = useContext(AppContext)
+    const { productos, categories, mostrarDatos } = useContext(AppContext)
     const [inputs, setInputs] = useState({});
-    
+
     const editProd = (prod) => {
         setInputs({
             id: prod.id,
-            nombre: prod.nombre,
+            CategoryId: prod.categories.id,
             linkImg: prod.linkImg,
             descrip: prod.descrip,
             precio: prod.precio,
@@ -23,8 +23,16 @@ export function FormProd() {
                 'Content-Type': 'application/json',
                 'x-access-token': localStorage.getItem("token")
             }
-        }).then(
-            alert("Borrado Exitosamente"))
+        }).then(response => {
+            if (response.status === 200) {
+                alert('Borrado exitosamente')
+            } else if (response.status === 403) {
+                response.json().then(e => { alert(e.message) })
+            } else {
+                alert('Error')
+                console.log(response)
+            }
+        })
         mostrarDatos()
 
     }
@@ -37,6 +45,7 @@ export function FormProd() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log(inputs)
         if (Object.values(inputs).length >= 5) {
             if (inputs.id !== undefined) {
                 fetch(`http://127.0.0.1:5050/product/${inputs.id}`, {
@@ -46,8 +55,15 @@ export function FormProd() {
                         'x-access-token': localStorage.getItem("token")
                     },
                     body: JSON.stringify(inputs)
-                }).then(
-                    alert("Actualizado Exitosamente"))
+                }).then(response => {
+
+                    if (response.status === 200) {
+                        response.json().then(e => { alert(e.message) })
+                    } else {
+                        response.json().then(e => { alert(e.message) })
+                    }
+                    console.log(response)
+                })
             } else {
                 fetch('http://127.0.0.1:5050/product', {
                     method: 'POST',
@@ -56,12 +72,18 @@ export function FormProd() {
                         'x-access-token': localStorage.getItem("token")
                     },
                     body: JSON.stringify(inputs)
-                }).then(
-                    alert("Guadado Exitosamente"))
+                }).then(response => {
+                    if (response.status === 200) {
+                        console.log(response)
+                        response.json().then(e => { console.log(e) })
+                    } else {
+                        response.json().then(e => { alert(e.message) })
+                    }
+                })
             }
             setInputs({})
             mostrarDatos()
-            
+
         } else {
             alert("Faltan datos")
         }
@@ -71,28 +93,34 @@ export function FormProd() {
             <div id="form-cont">
                 <h3>Registrar Producto</h3>
                 <form onSubmit={handleSubmit} className="row g-8 align-items-center  form" >
-                    <div className=" align-items-center">
-                        <label className="form-label">Nombre del producto.</label>
-                        <input
-                            name="nombre"
-                            value={inputs.nombre || ""}
-                            onChange={handleChange} type="text" className="form-control h-25" />
-                    </div>
-                    <div className=" align-items-center">
+
+
+                    <div>
                         <label className="form-label">Descripcion del producto.</label>
                         <textarea
                             name="descrip"
                             value={inputs.descrip || ""}
                             onChange={handleChange} className="form-control  h-25" row="2" />
                     </div>
-                    <div className=" align-items-center">
+                    <div>
+                        <select name="CategoryId" value={inputs.category} onChange={handleChange} placeholder="Metodo de pago">
+                            <option>Categoría</option>
+                            {
+                                categories.map(cat => {
+                                    return (<option key={cat.id} value={inputs.CategoryId}>{cat.name}</option>)
+                                })
+
+                            }
+                        </select>
+                    </div>
+                    <div>
                         <label className="form-label">Precio del producto.</label>
                         <input
                             name="precio"
                             value={inputs.precio || ""}
                             onChange={handleChange} type="number" className="form-control  h-25" />
                     </div>
-                    <div className=" align-items-center">
+                    <div>
                         <label className="form-label">Link Imagen.</label>
                         <input
                             name="linkImg"
@@ -100,7 +128,7 @@ export function FormProd() {
                             onChange={handleChange} type="text" className="form-control  h-25" />
                     </div>
 
-                    <div className=" align-items-center">
+                    <div>
                         <label className="form-label">Cantiadad disponible.</label>
                         <input
                             name="cantD"
@@ -114,7 +142,7 @@ export function FormProd() {
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Nombre</th>
+                            <th>Categoria</th>
                             <th>L. Imagen</th>
                             <th>Descripción</th>
                             <th>Precio</th>
@@ -127,7 +155,7 @@ export function FormProd() {
                             return (
                                 < tr key={prod.id}>
                                     <th>{prod.id}</th>
-                                    <td>{prod.nombre}</td>
+                                    <td>{prod.categories.name}</td>
                                     <td>{prod.linkImg}</td>
                                     <td>{prod.descrip}</td>
                                     <td>{prod.precio}</td>

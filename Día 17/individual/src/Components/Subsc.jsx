@@ -19,7 +19,7 @@ export function Subsc() {
                 },
                 body: JSON.stringify(inputs)
             }).then(response => response.json()).then(e => {
-                console.log(e)
+                alert(e.message)
                 const data = {
                     email: inputs.email,
                     password: inputs.password
@@ -32,10 +32,10 @@ export function Subsc() {
                     },
                     body: JSON.stringify(data)
                 }).then(response => response.json())
-                .then(data => localStorage.setItem("token", data.tokenAccess));
+                .then(res =>  localStorage.setItem("token", res.tokenAccess) )
+              
             })
             setInputs({})
-            alert("Guadado Exitosamente")
             
         } else {
             alert("Faltan datos")
@@ -44,7 +44,7 @@ export function Subsc() {
     }
     return (
         <div id="Suscrib">
-        <h6>¿Ya tienes una cuenta? <Link to={'./Login'}>Iniciar Sesion</Link></h6>
+        <h6>¿Ya tienes una cuenta? <Link to={'./Login'}>Iniciar Sesión</Link></h6>
             <form onSubmit={handleSubmit} className="row g-8 align-items-center  form" >
                 <div className=" align-items-center">
                     <label className="form-label">Nombre</label>

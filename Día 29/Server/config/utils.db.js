@@ -1,21 +1,28 @@
 const database = require("./mysql");
-const {order} = require("../models/order.model");
-const product = require("../models/prod.model")
-const {detOrder} = require("../models/detOrder.model")
+const {Order} = require("../models/order.model");
+const {Product} = require("../models/prod.model")
+const {DetOrder} = require("../models/detOrder.model")
 const {User} = require('../models/user.model')
+const {Category} = require('../models/category.model')
 
-User.hasMany(order,{
+User.hasMany(Order,{
   foreignKey: "UserId",
   as: "orders",
 })
-order.hasMany(detOrder,{
+Order.hasMany(DetOrder,{
   foreignKey: "orderId",
   as: "dOrders",
 })
+Product.belongsTo(Category, {
+  foreignKey: "CategoryId",
+  as: "categories",
+});
 
-order.sync();
-product.sync();
-detOrder.sync();
+
+Order.sync();
+Product.sync();
+DetOrder.sync();
 User.sync()
+Category.sync()
 
 database.sync();

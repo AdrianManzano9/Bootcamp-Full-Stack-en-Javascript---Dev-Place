@@ -1,4 +1,4 @@
-const product  = require('../models/prod.model');
+const {product}  = require('../models/prod.model');
 
 const reserveProdts = async (req, res, next) => {
     try {

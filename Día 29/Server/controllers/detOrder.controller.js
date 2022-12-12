@@ -1,4 +1,4 @@
-const {detOrder} = require("../models/detOrder.model")
+const {DetOrder} = require("../models/detOrder.model")
 
 const createDetOrder = async (req, res) => {
     const model = {
@@ -10,8 +10,8 @@ const createDetOrder = async (req, res) => {
     }
 
 
-    const response = await detOrder.create(model).then((data) => {
-        const res = { error: false, data: data }
+    const response = await DetOrder.create(model).then((data) => {
+        const res = { error: false, data: data}
         return res;
     }).catch(error => {
         const res = { error: true, message: error }

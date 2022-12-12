@@ -5,7 +5,7 @@ export function Card() {
     let { category, search, setCount, productos } = useContext(AppContext);
     let filtProd = productos.filter(prod => {
         return (
-            (category === "All" ? true : prod.nombre === category) && (prod.descrip.toLowerCase().includes(search.toLowerCase())) && (prod.cantD > 0)
+            (category === "All" ? true : prod.categories.name === category) && (prod.descrip.toLowerCase().includes(search.toLowerCase())) && (prod.cantD > 0)
         )
     })
 

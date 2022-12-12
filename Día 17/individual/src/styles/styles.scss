@@ -292,6 +292,12 @@ button:active {
     background-image: url("https://www.lifeder.com/wp-content/uploads/2020/02/objetos-tecnol%C3%B3gicos-lifeder-imagen-1.jpg");
     grid-column-end: span 2;
 
+
+    select{
+        margin: 15px;
+        width: 40vw;
+        color: $P-Dark;
+    }
    
 
     button{
