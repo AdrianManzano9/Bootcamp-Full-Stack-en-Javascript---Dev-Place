@@ -22,13 +22,13 @@ var Order = sequelize.define('order', {
     fTarjeta: Sequelize.DATEONLY,
     total: Sequelize.INTEGER,
 }
-    // , {
-    //     defaultScope: {
-    //         attributes: {
-    //             exclude: ['fTarjeta','nTarjeta']
-    //         }
-    //     }
-    // }
+    , {
+        defaultScope: {
+            attributes: {
+                exclude: ['fTarjeta', 'nTarjeta']
+            }
+        }
+    }
 );
 
 

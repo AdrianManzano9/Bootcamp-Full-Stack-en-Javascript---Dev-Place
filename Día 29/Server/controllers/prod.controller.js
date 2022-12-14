@@ -23,11 +23,17 @@ const getProds = async (req, res) => {
 
 const createProd = async (req, res) => {
     try {
+        if (req.file === null) {
+            return res.status(400).send({ message: 'Falta la Imagen' });
+        }
+        console.log(req.body)
+        const url = req.protocol + '://' + req.get('host')
+        const urlImage = url + '/upload/' + req.file.filename;
         const modelData = {
-            linkImg: req.body.linkImg,
+            linkImg: urlImage,
             descrip: req.body.descrip,
             precio: req.body.precio,
-            cant: req.body.cant,
+            cant: 0,
             cantD: req.body.cantD,
             CategoryId: req.body.CategoryId,
         }
@@ -66,8 +72,22 @@ const findProdById = async (req, res) => {
 
 const UpdateProdById = async (req, res) => {
     try {
+        if (req.file === null) {
+            return res.status(400).send({ message: 'Falta la Imagen' });
+        }
+        console.log(req.body)
+        const url = req.protocol + '://' + req.get('host')
+        const urlImage = url + '/upload/' + req.file.filename;
         const { id } = req.params;
-        const response = await Product.update(req.body, {
+        const modelData = {
+            linkImg: urlImage,
+            descrip: req.body.descrip,
+            precio: req.body.precio,
+            cant: req.body.cant,
+            cantD: req.body.cantD,
+            CategoryId: req.body.CategoryId,
+        }
+        const response = await Product.update(modelData, {
             where: { id: id }
         }).then((data) => {
             const res = { error: false, data: data, message: "Producto Actualizado" }

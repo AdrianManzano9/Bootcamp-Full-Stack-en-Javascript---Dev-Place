@@ -136,20 +136,20 @@ export function Cart() {
                     <label
                         className="form-label">Dirección</label>
                     <input name="direction"
-                        value={inputs.direction}
+                        value={inputs.direction || ""}
                         onChange={handleChange} type="text" className="form-control  h-25" id="exampleInputEmail1" aria-describedby="emailHelp" />
                 </div>
                 <div className="mb-1">
                     <label
-                        className="form-label">Hora de compra: </label>
+                        className="form-label">Fecha y hora de compra: </label>
                     <input name="time"
                         value={inputs.time = time}
                         onChange={handleChange}
                         className="form-control" type="text" disabled />
                 </div>
                 <div className="mb-1">
-                    <select name="tPago" value={inputs.tPago} onChange={handleChange} placeholder="Metodo de pago">
-                        <option>Tipo de pago</option>
+                    <select name="tPago" value={inputs.tPago || ""} onChange={handleChange} placeholder="Metodo de pago">
+                        <option value="">Tipo de pago</option>
                         <option value="Efectivo">Efectivo</option>
                         <option value="Tarjeta de crédito">Tarjeta de crédito</option>
                         <option value="Tarjeta de débito">Tarjeta de débito</option>

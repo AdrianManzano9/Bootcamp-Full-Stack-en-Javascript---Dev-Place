@@ -1,10 +1,10 @@
 const express = require('express');
 const order = express.Router();
-const {getOrders,createOrder} = require('../controllers/orden.controller');
+const {getOrders,createOrder} = require('../controllers/order.controller');
 const {ValidateOrder} = require('../models/order.model')
-const {verifyToken} = require('../middlewares/authJwt')
+const {verifyToken,isAdmin} = require('../middlewares/authJwt')
 
-order.get('/', getOrders);
+order.get('/',verifyToken,isAdmin, getOrders);
 order.post('/',ValidateOrder,verifyToken, createOrder);
 
 module.exports = order;

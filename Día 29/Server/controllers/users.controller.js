@@ -13,10 +13,10 @@ const getUser = async (req, res)=>{
             include:{
                 model: DetOrder,
                 as: "dOrders",
-                attributes: ['cant','precio','descrip'],
+                attributes: ['id','cant','precio','descrip'],
             }
         }],
-        attributes: ['name','surname','email','admin']
+        attributes: ['id','name','surname','email','admin']
     } ).then((data) => {
         const res = { error: false, data: data }
         return res;

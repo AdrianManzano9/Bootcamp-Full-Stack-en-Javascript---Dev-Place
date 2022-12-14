@@ -14,7 +14,7 @@ categoryController.getCategory= async (req, res) => {
 
 categoryController.createCategory= async (req, res) => {
     try {
-        const response = await Category.create(req)
+        const response = await Category.create(req.body)
             .then((data) => {
                 const res = {data: data, message: "Category Create" }
                 return res;
@@ -27,7 +27,23 @@ categoryController.createCategory= async (req, res) => {
         console.log(e)
     }
 }
-
+categoryController.UpdateCategoryById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const response = await Category.update(req.body, {
+            where: { id: id }
+        }).then((data) => {
+            const res = { error: false, data: data, message: "Producto Actualizado" }
+            return res;
+        }).catch(error => {
+            const res = { error: true, message: error }
+            return res;
+        });
+        res.json(response);
+    } catch (e) {
+        console.log(e)
+    }
+}
 
 categoryController.getCategoryById= async (req, res) => {
     try {

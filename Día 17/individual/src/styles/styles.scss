@@ -283,7 +283,7 @@ button:active {
     }
 }
 
-#Reg-produc {
+#Reg-produc, #Reg-category {
 
     padding: 30px;
     color: $P-Dark;
@@ -320,8 +320,8 @@ button:active {
         align-self: center;
     }
 
-    #t-prods{
-
+    #t-prods, #t-Categ{
+        width: 100%;
         td,th{
             border:solid black ;
             padding: 10px;
@@ -338,9 +338,12 @@ button:active {
     input,
     textarea {
         font-size: x-small;
+
     }
 
 }
+
+
 
 footer {
     background-color: $S-Dark;

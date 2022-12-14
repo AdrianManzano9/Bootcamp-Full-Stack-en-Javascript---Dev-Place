@@ -14,16 +14,10 @@ var Product = database.define('product', {
     precio: Sequelize.DOUBLE,
     cant: Sequelize.INTEGER,
     cantD: Sequelize.INTEGER,
+    CategoryId: Sequelize.INTEGER,
 });
 const ValidateProd = (req, res, next) => {
     const schema = Joi.object({
-        linkImg: Joi.string().min(3).max(100).required()
-        .messages({
-            'string.empty': "Ingresa la linkImg",
-            'string.min': "La linkImg debe ser mayor a 3 caracteres",
-            'string.max': "El descripcion debe ser menor a 100 caracteres",
-            'any.required': "Ingresa la linkImg"
-        }),
         descrip:  Joi.string().min(3).max(100).required()
         .messages({
             'string.empty': "Ingresa una descripcion",

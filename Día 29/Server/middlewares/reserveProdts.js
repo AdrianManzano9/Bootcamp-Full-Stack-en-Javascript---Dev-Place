@@ -1,10 +1,10 @@
-const {product}  = require('../models/prod.model');
+const {Product}  = require('../models/prod.model');
 
 const reserveProdts = async (req, res, next) => {
     try {
         
         const  id  = req.body.prodId;
-        product.findAll({
+        Product.findAll({
             where: { id: id }
         }).then((data) => {
             const modelData = {
@@ -15,7 +15,7 @@ const reserveProdts = async (req, res, next) => {
                 cant: 0,
                 cantD: req.body.cantD,
             }
-            const response = product.update(modelData, {
+            const response = Product.update(modelData, {
                 where: { id: id }
             }).then(() => {
                 next()

@@ -1,6 +1,6 @@
 
 import { Nav } from './Components/Nav';
-import { Products } from './Components/Products';
+import { Categories } from './Components/Categories';
 import { Carousel } from './Components/Carousel';
 import { Card } from './Components/Card';
 import { Form } from './Components/Form';
@@ -10,8 +10,9 @@ import { Cart } from './Components/Cart';
 import { useState, useEffect } from 'react';
 import { Route, Routes } from "react-router-dom";
 import AppContext from './contexts/AppContext';
-import { FormProd } from './Components/FromProd';
+import { Admin } from './Components/Admin';
 import { Bars } from 'react-loader-spinner';
+
 
 function App() {
   const [category, setCategory] = useState("All");
@@ -44,7 +45,7 @@ function App() {
   useEffect(() => {
     mostrarDatos()
   }, [])
-  while (productos.length === 0) {
+  while (productos.length === 0 || categories.length === 0) {
     return (
       <div id='Loader'>
         <Bars
@@ -67,7 +68,7 @@ function App() {
         <header>
 
           <Nav />
-          <Products />
+          <Categories />
         </header>
         <main>
 
@@ -77,7 +78,7 @@ function App() {
             <Route path='/FreQuestions' element={<FreQuestions />} />
             <Route path='/Form/*' element={<Form />} />
             <Route path='/Cart' element={<Cart />} />
-            <Route path='/Admin' element={<FormProd />} />
+            <Route path='/Admin/*' element={<Admin />} />
           </Routes>
 
 

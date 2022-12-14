@@ -1,19 +1,23 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
+import { Link } from "react-router-dom";
 import AppContext from "../contexts/AppContext";
+
+
 
 export function FormProd() {
     const { productos, categories, mostrarDatos } = useContext(AppContext)
     const [inputs, setInputs] = useState({});
-
+    const imgLink = useRef()
     const editProd = (prod) => {
         setInputs({
             id: prod.id,
             CategoryId: prod.categories.id,
-            linkImg: prod.linkImg,
+            // linkImg: prod.linkImg,
             descrip: prod.descrip,
             precio: prod.precio,
             cantD: prod.cantD
         })
+        imgLink.current.value = prod.linkImg;
     }
 
     const deleteProd = (id) => {
@@ -45,43 +49,35 @@ export function FormProd() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(inputs)
-        if (Object.values(inputs).length >= 5) {
+        const formData  = new FormData(); 
+        formData.append("descrip", inputs.descrip)
+        formData.append("CategoryId", inputs.CategoryId)
+        formData.append("precio", inputs.precio);
+        formData.append("file", imgLink.current.files[0])
+        formData.append("cantD", inputs.cantD)
+        if (Object.values(inputs).length >= 4) {
             if (inputs.id !== undefined) {
                 fetch(`http://127.0.0.1:5050/product/${inputs.id}`, {
                     method: 'PUT',
                     headers: {
-                        'Content-Type': 'application/json',
                         'x-access-token': localStorage.getItem("token")
                     },
-                    body: JSON.stringify(inputs)
-                }).then(response => {
-
-                    if (response.status === 200) {
-                        response.json().then(e => { alert(e.message) })
-                    } else {
-                        response.json().then(e => { alert(e.message) })
-                    }
-                    console.log(response)
-                })
+                    body: formData
+                }).then(response => response.json().then(e => { alert(e.message) }))
             } else {
+
                 fetch('http://127.0.0.1:5050/product', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
                         'x-access-token': localStorage.getItem("token")
                     },
-                    body: JSON.stringify(inputs)
-                }).then(response => {
-                    if (response.status === 200) {
-                        console.log(response)
-                        response.json().then(e => { console.log(e) })
-                    } else {
-                        response.json().then(e => { alert(e.message) })
-                    }
-                })
+                    body: formData,
+                }).then(response => response.json().then(e => { alert(e.message) }))
+
             }
+
             setInputs({})
+            imgLink.current.value = "";
             mostrarDatos()
 
         } else {
@@ -103,15 +99,16 @@ export function FormProd() {
                             onChange={handleChange} className="form-control  h-25" row="2" />
                     </div>
                     <div>
-                        <select name="CategoryId" value={inputs.category} onChange={handleChange} placeholder="Metodo de pago">
+                        <select name="CategoryId" value={inputs.CategoryId} onChange={handleChange} placeholder="Categoría">
                             <option>Categoría</option>
                             {
                                 categories.map(cat => {
-                                    return (<option key={cat.id} value={inputs.CategoryId}>{cat.name}</option>)
+                                    return (<option key={cat.id} value={cat.id}>{cat.name}</option>)
                                 })
 
                             }
                         </select>
+                        <Link to={'./Categories'} ><span className="badge rounded-pill text-bg-primary">+</span></Link>
                     </div>
                     <div>
                         <label className="form-label">Precio del producto.</label>
@@ -120,13 +117,16 @@ export function FormProd() {
                             value={inputs.precio || ""}
                             onChange={handleChange} type="number" className="form-control  h-25" />
                     </div>
+
+
+
                     <div>
-                        <label className="form-label">Link Imagen.</label>
-                        <input
-                            name="linkImg"
-                            value={inputs.linkImg || ""}
-                            onChange={handleChange} type="text" className="form-control  h-25" />
+                        <label htmlFor="formFile" className="form-label">Foto del producto</label>
+                        <input className="form-control" id="formFile"type="file" name="img-link" ref={imgLink} />
                     </div>
+
+
+
 
                     <div>
                         <label className="form-label">Cantiadad disponible.</label>

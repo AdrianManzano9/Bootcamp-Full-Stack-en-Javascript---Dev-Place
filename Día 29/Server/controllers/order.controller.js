@@ -29,7 +29,7 @@ const createOrder = async (req,res)=>{
         fTarjeta:  req.body.fTarjeta,
         UserId: req.userId,
     }
-    const response = await order.create(modelData).then((data) => {
+    const response = await Order.create(modelData).then((data) => {
         const res = { error: false, data: data, message:"Orden enviada"  }
         return res;
     }).catch(error => {
